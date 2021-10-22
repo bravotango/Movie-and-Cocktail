@@ -16,6 +16,7 @@
 $(document).ready(function () {
   function movieSearch() {
     const movieTitle = $("#userQuery").val();
+    git;
     getMovie(movieTitle);
   }
 
