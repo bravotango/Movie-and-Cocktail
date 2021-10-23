@@ -14,6 +14,8 @@
 //create <aside> HTML with movie title, poster, rating and suggested drink with image
 
 $(document).ready(function () {
+  displayMovieTitles();
+
   function movieSearch() {
     const movieTitle = $("#userQuery").val();
     getMovie(movieTitle);
@@ -36,9 +38,6 @@ $(document).ready(function () {
         var runTime = data.Runtime;
         var title = data.Title;
         console.log(data);
-        var liEl = $("<li class ='movieTitle'>");
-        liEl.text(title);
-        $("#searchList").append(liEl);
 
         var movieHTML = $(`
           <h3> ${title}</h3>
@@ -49,6 +48,9 @@ $(document).ready(function () {
         `);
         $("#movies").empty();
         $("#movies").append(movieHTML);
+
+        setLocalStorageMovies(title);
+        displayMovieTitles();
       });
   }
 
@@ -61,12 +63,38 @@ $(document).ready(function () {
     console.log(cocktail);
     // fetch
   }
-  getMovie("The Big Lebowski");
-  getCocktail("White Russian");
+
   $("#searchBtn").on("click", movieSearch);
+
+  function displayMovieTitles() {
+    let searchList = $("#searchList");
+    searchList.html("");
+    let movies = getLocalStorageMovies();
+    movies.forEach((title) => {
+      var liEl = $("<li class='movieTitle'>");
+      liEl.text(title);
+      searchList.append(liEl);
+    });
+  }
+
+  function setLocalStorageMovies(movieTitle) {
+    let movieStorage = getLocalStorageMovies();
+    if (!movieStorage || !movieStorage.find((m) => m === movieTitle)) {
+      // title not found add to local storage
+      movieStorage.push(movieTitle);
+      localStorage.setItem("movies", JSON.stringify(movieStorage));
+    }
+  }
+
+  function getLocalStorageMovies() {
+    let localStorageMovies = JSON.parse(localStorage.getItem("movies"));
+    return localStorageMovies || [];
+  }
+
   function getDrink(requestDrinkUrl) {
     //var requestDrinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
     // fetch
+    console.log(requestDrinkUrl);
     fetch(requestDrinkUrl)
       .then(function (response) {
         return response.json();
@@ -75,8 +103,8 @@ $(document).ready(function () {
         console.log(data);
       });
   }
-  var requestDrinkUrl =
-    "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=";
-  var addedLiquor = "";
+  var addedLiquor = "GiN";
+  var requestDrinkUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
+
   getDrink(requestDrinkUrl);
 });
