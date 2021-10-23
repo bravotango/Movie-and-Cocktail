@@ -16,7 +16,6 @@
 $(document).ready(function () {
   function movieSearch() {
     const movieTitle = $("#userQuery").val();
-    git;
     getMovie(movieTitle);
   }
 
@@ -41,4 +40,24 @@ $(document).ready(function () {
 
   getMovie("The Big Lebowski");
   getCocktail("White Russian");
+
+  $("#searchBtn").on("click", movieSearch);
+
+  function setLocalStorageMovies(movieTitle) {
+    let movieStorage = getLocalStorageMovies();
+    if (!movieStorage || !movieStorage.find((m) => m === movieTitle)) {
+      // title not found add to local storage
+      movieStorage.push(movieTitle);
+      localStorage.setItem("movies", JSON.stringify(movieStorage));
+    }
+  }
+
+  function getLocalStorageMovies() {
+    let localStorageMovies = JSON.parse(localStorage.getItem("movies"));
+    return localStorageMovies || [];
+  }
+
+  setLocalStorageMovies("foo");
+  setLocalStorageMovies("bar");
+  setLocalStorageMovies("foo");
 });
