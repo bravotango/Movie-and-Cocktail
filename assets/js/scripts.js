@@ -35,14 +35,20 @@ $(document).ready(function () {
         var posterLink = data.Poster;
         var runTime = data.Runtime;
         var title = data.Title;
-        var movieID = data.imdbID;
-        console.log(posterLink);
         console.log(data);
-
         var liEl = $("<li class ='movieTitle'>");
         liEl.text(title);
-
         $("#searchList").append(liEl);
+
+        var titleEl = $("<h3>");
+        var genreEl = $("<p>");
+        var plotEl = $("<p>");
+        var postImg = $("<img src=" + posterLink + ">");
+        var runtimeEl = $("<p>");
+
+        var movieHTML = `
+          
+        `;
       });
   }
 
