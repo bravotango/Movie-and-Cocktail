@@ -16,8 +16,8 @@
 $(document).ready(function () {
   function movieSearch() {
     const movieTitle = $("#userQuery").val();
-    git;
     getMovie(movieTitle);
+    console.log("me");
   }
 
   function getMovie(movie) {
@@ -30,15 +30,32 @@ $(document).ready(function () {
         return response.json();
       })
       .then(function (data) {
+        var genre = data.Genre;
+        var moviePlot = data.Plot;
+        var posterLink = data.Poster;
+        var runTime = data.Runtime;
+        var title = data.Title;
+        var movieID = data.imdbID;
+        console.log(posterLink);
         console.log(data);
+
+        var liEl = $("<li class ='movieTitle'>");
+        liEl.text(title);
+
+        $("#searchList").append(liEl);
       });
   }
+
+  $(document).on("click", ".movieTitle", function () {
+    $(this).text();
+    getMovie($(this).text());
+  });
 
   function getCocktail(cocktail) {
     console.log(cocktail);
     // fetch
   }
-
   getMovie("The Big Lebowski");
   getCocktail("White Russian");
+  $("#searchBtn").on("click", movieSearch);
 });
