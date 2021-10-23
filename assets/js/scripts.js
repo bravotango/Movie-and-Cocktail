@@ -14,9 +14,12 @@
 //create <aside> HTML with movie title, poster, rating and suggested drink with image
 
 $(document).ready(function () {
+  displayMovieTitles();
+
   function movieSearch() {
     const movieTitle = $("#userQuery").val();
     getMovie(movieTitle);
+    console.log("me");
   }
 
   function getMovie(movie) {
@@ -29,19 +32,42 @@ $(document).ready(function () {
         return response.json();
       })
       .then(function (data) {
+        var genre = data.Genre;
+        var moviePlot = data.Plot;
+        var posterLink = data.Poster;
+        var runTime = data.Runtime;
+        var title = data.Title;
+        var movieID = data.imdbID;
+        console.log(posterLink);
         console.log(data);
+
+        setLocalStorageMovies(title);
+        displayMovieTitles();
       });
   }
+
+  $(document).on("click", ".movieTitle", function () {
+    $(this).text();
+    getMovie($(this).text());
+  });
 
   function getCocktail(cocktail) {
     console.log(cocktail);
     // fetch
   }
 
-  getMovie("The Big Lebowski");
-  getCocktail("White Russian");
-
   $("#searchBtn").on("click", movieSearch);
+
+  function displayMovieTitles() {
+    let searchList = $("#searchList");
+    searchList.html("");
+    let movies = getLocalStorageMovies();
+    movies.forEach((title) => {
+      var liEl = $("<li class='movieTitle'>");
+      liEl.text(title);
+      searchList.append(liEl);
+    });
+  }
 
   function setLocalStorageMovies(movieTitle) {
     let movieStorage = getLocalStorageMovies();
@@ -56,8 +82,4 @@ $(document).ready(function () {
     let localStorageMovies = JSON.parse(localStorage.getItem("movies"));
     return localStorageMovies || [];
   }
-
-  setLocalStorageMovies("foo");
-  setLocalStorageMovies("bar");
-  setLocalStorageMovies("foo");
 });
