@@ -82,4 +82,21 @@ $(document).ready(function () {
     let localStorageMovies = JSON.parse(localStorage.getItem("movies"));
     return localStorageMovies || [];
   }
+
+  function getDrink(requestDrinkUrl) {
+    //var requestDrinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
+    // fetch
+    console.log(requestDrinkUrl);
+    fetch(requestDrinkUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+      });
+  }
+  var addedLiquor = "GiN";
+  var requestDrinkUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
+
+  getDrink(requestDrinkUrl);
 });
