@@ -64,4 +64,25 @@ $(document).ready(function () {
   getMovie("The Big Lebowski");
   getCocktail("White Russian");
   $("#searchBtn").on("click", movieSearch);
+
+  
+  function getDrink(requestDrinkUrl) {
+    //var requestDrinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
+    // fetch
+    fetch(requestDrinkUrl)
+      .then(function (response) {
+        return response.json();
+    })
+      .then(function (data) {
+        console.log(data);
+      });
+  }
+  var requestDrinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="
+  var addedLiquor = "";
+  getDrink(requestDrinkUrl);
+
+
 });
+
+
+
