@@ -4,6 +4,10 @@ body {
   font-family: "Mukta", sans-serif;
 }
 
+body header {
+  text-align: center;
+}
+
 body input {
   font-family: "Mukta", sans-serif;
 }

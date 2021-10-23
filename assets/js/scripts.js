@@ -37,9 +37,17 @@ $(document).ready(function () {
         var posterLink = data.Poster;
         var runTime = data.Runtime;
         var title = data.Title;
-        var movieID = data.imdbID;
-        console.log(posterLink);
         console.log(data);
+
+        var movieHTML = $(`
+          <h3> ${title}</h3>
+          <img src='${posterLink}'>
+           <span><h5>Synopsis:</h5><p> ${moviePlot}</p></span>
+          <p>Genre: ${genre}</p>
+          <p>Runtime: ${runTime}</p>
+        `);
+        $("#movies").empty();
+        $("#movies").append(movieHTML);
 
         setLocalStorageMovies(title);
         displayMovieTitles();
