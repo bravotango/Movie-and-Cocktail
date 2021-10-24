@@ -1,31 +1,51 @@
 ## Creating a branch
 
-### Before you create your branch
+### Step 1
 
-git checkout main<br/>
-git pull
+#### First step of the day
 
-### Create your branch
+```
+> git checkout main
+> git pull
+```
 
-git checkout -b &lt;initials&gt;/&lt;branch name&gt;
+### Step 2
 
-### Add your changes to your branch
+#### Create branch
 
-git add .
-git commit -m "message about your changes"<br/>
+```
+> git checkout -b <your initials>/<your branch name>
+```
 
-### Make sure you have no conflicts with main
+### Step 3
 
-git checkout main<br/>
-git pull<br/>
-git checkout &lt;initials&gt;/&lt;branch name&gt;<br/>
-git merge main
+#### Add & commit your code to your branch
 
-### Commit and push changes to github
+```
+> git add .
+> git commit -m "message about your changes"
+```
 
-git push
+### Step 4
 
-(if you had to resolve conflicts with main - do another git commit)
+#### Make sure you have no conflicts with main
+
+```
+> git checkout main
+> git pull
+> git checkout <your initials>/<your branch name>
+> git merge main
+```
+
+### Step 5
+
+### Push changes to github
+
+```
+> git push
+```
+
+_if encountered conflicts with merge - after successful resolution, do another git commit "Step 3"_
 
 ### Go to github repo to create pull request to merge your changes into our main branch
 
