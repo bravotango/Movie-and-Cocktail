@@ -57,12 +57,35 @@ $(document).ready(function () {
   $(document).on("click", ".movieTitle", function () {
     $(this).text();
     getMovie($(this).text());
+    getCocktail(cocktail);
   });
 
   function getCocktail(cocktail) {
-    console.log(cocktail);
+    // console.log(cocktail);
     // fetch
+    fetch(cocktail)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        var drink = data.drinks[0].strDrink;
+        var drinkPic = data.drinks[0].strDrinkThumb;
+
+        var drinkHTML = $(`<h3>${drink}</h3>
+        <img src = '${drinkPic}'>`);
+
+        $("#drinks").empty();
+        $("#drinks").append(drinkHTML);
+
+      });
   }
+  var addedLiquor = "Gin";
+  var cocktail = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
+  
+  // getCocktail(cocktail);
+
+
 
   $("#searchBtn").on("click", movieSearch);
 
@@ -91,20 +114,20 @@ $(document).ready(function () {
     return localStorageMovies || [];
   }
 
-  function getDrink(requestDrinkUrl) {
-    //var requestDrinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
-    // fetch
-    console.log(requestDrinkUrl);
-    fetch(requestDrinkUrl)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data);
-      });
-  }
-  var addedLiquor = "GiN";
-  var requestDrinkUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
+  // function getDrink(requestDrinkUrl) {
+  //   //var requestDrinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
+  //   // fetch
+  //   console.log(requestDrinkUrl);
+  //   fetch(requestDrinkUrl)
+  //     .then(function (response) {
+  //       return response.json();
+  //     })
+  //     .then(function (data) {
+  //       console.log(data);
+  //     });
+  // }
+  // var addedLiquor = "GiN";
+  // var requestDrinkUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
 
-  getDrink(requestDrinkUrl);
+
 });

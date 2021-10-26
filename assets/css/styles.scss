@@ -8,4 +8,8 @@ body {
   input {
     font-family: "Mukta", sans-serif;
   }
+  .movieTitle:hover {
+    color: darkgrey;
+    cursor: pointer;
+  }
 }

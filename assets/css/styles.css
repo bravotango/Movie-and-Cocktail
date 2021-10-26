@@ -11,4 +11,9 @@ body header {
 body input {
   font-family: "Mukta", sans-serif;
 }
+
+body .movieTitle:hover {
+  color: darkgrey;
+  cursor: pointer;
+}
 /*# sourceMappingURL=styles.css.map */
