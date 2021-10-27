@@ -15,4 +15,9 @@ body input {
 body #error {
   color: red;
 }
+
+body .responsive {
+  max-width: 100%;
+  height: auto;
+}
 /*# sourceMappingURL=styles.css.map */
