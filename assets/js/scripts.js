@@ -16,11 +16,6 @@
 $(document).ready(function () {
   displayMovieTitles();
 
-  function movieSearch() {
-    const movieTitle = $("#userQuery").val();
-    getMovie(movieTitle);
-  }
-
   function getMovie(movie) {
     const omdbApiKey = "dc038d01";
     let requestMovieURL = `https://www.omdbapi.com/?apikey=${omdbApiKey}&t=${movie}`;
@@ -35,6 +30,8 @@ $(document).ready(function () {
           console.log("We have an error");
           throw new Error(`${data.Error}`);
         }
+        removeSearchValue();
+        removeError(); // we have a successful search, remove any errors
         console.log(data);
         var genre = data.Genre;
         var moviePlot = data.Plot;
@@ -57,14 +54,9 @@ $(document).ready(function () {
         displayMovieTitles();
       })
       .catch(function (err) {
-        $("#error").text(err);
+        setError(err);
       });
   }
-
-  $(document).on("click", ".movieTitle", function () {
-    $(this).text();
-    getMovie($(this).text());
-  });
 
   function getCocktail(cocktail) {
     console.log(cocktail);
@@ -75,19 +67,37 @@ $(document).ready(function () {
   // On form submit
   $("form#searchMovie").on("submit", function (e) {
     e.preventDefault();
-    movieSearch();
-    console.log("e", e);
+    getMovie(e.target[0].value);
+  });
+
+  // Movie title clicked
+  $(document).on("click", ".movieTitle", function () {
+    $(this).text();
+    getMovie($(this).text());
   });
 
   // On focus input - clear out the current value
   $("#userQuery").on("focus", function () {
-    $("#userQuery").val("");
+    removeSearchValue();
   });
+
+  function removeSearchValue() {
+    $("#userQuery").val("");
+  }
+
+  function removeError() {
+    $("#error").text("");
+  }
+
+  function setError(err) {
+    $("#error").text(err);
+  }
 
   function displayMovieTitles() {
     let searchList = $("#searchList");
     searchList.html("");
     let movies = getLocalStorageMovies();
+    movies.sort();
     movies.forEach((title) => {
       var liEl = $("<li class='movieTitle btn'>");
       liEl.text(title);
