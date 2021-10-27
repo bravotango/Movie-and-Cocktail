@@ -76,7 +76,7 @@ $(document).ready(function () {
 
     var movieHTML = $(`
         <h3> ${title}</h3>
-        <img src='${posterLink}'>
+        <img src='${posterLink}' class='responsive'>
          <span><h5>Synopsis:</h5><p> ${moviePlot}</p></span>
         <p>Genre: ${genre}</p>
         <p>Runtime: ${runTime}</p>
