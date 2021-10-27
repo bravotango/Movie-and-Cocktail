@@ -74,6 +74,7 @@ $(document).ready(function () {
   $(document).on("click", ".movieTitle", function () {
     $(this).text();
     getMovie($(this).text());
+    getCocktail(cocktail);
   });
 
   // On focus input - clear out the current value
@@ -88,6 +89,12 @@ $(document).ready(function () {
   function removeError() {
     $("#error").text("");
   }
+  var addedLiquor = "Gin";
+  var cocktail = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
+  
+  // getCocktail(cocktail);
+
+
 
   function setError(err) {
     $("#error").text(err);
@@ -119,20 +126,20 @@ $(document).ready(function () {
     return localStorageMovies || [];
   }
 
-  function getDrink(requestDrinkUrl) {
-    //var requestDrinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
-    // fetch
-    console.log(requestDrinkUrl);
-    fetch(requestDrinkUrl)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data);
-      });
-  }
-  var addedLiquor = "GiN";
-  var requestDrinkUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
+  // function getDrink(requestDrinkUrl) {
+  //   //var requestDrinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
+  //   // fetch
+  //   console.log(requestDrinkUrl);
+  //   fetch(requestDrinkUrl)
+  //     .then(function (response) {
+  //       return response.json();
+  //     })
+  //     .then(function (data) {
+  //       console.log(data);
+  //     });
+  // }
+  // var addedLiquor = "GiN";
+  // var requestDrinkUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
 
-  getDrink(requestDrinkUrl);
+
 });
