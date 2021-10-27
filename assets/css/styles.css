@@ -11,4 +11,8 @@ body header {
 body input {
   font-family: "Mukta", sans-serif;
 }
+
+body #error {
+  color: red;
+}
 /*# sourceMappingURL=styles.css.map */

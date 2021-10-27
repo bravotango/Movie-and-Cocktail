@@ -16,12 +16,6 @@
 $(document).ready(function () {
   displayMovieTitles();
 
-  function movieSearch() {
-    const movieTitle = $("#userQuery").val();
-    getMovie(movieTitle);
-    console.log("me");
-  }
-
   function getMovie(movie) {
     const omdbApiKey = "dc038d01";
     let requestMovieURL = `https://www.omdbapi.com/?apikey=${omdbApiKey}&t=${movie}`;
@@ -32,6 +26,13 @@ $(document).ready(function () {
         return response.json();
       })
       .then(function (data) {
+        if (data.Response === "False") {
+          console.log("We have an error");
+          throw new Error(`${data.Error}`);
+        }
+        removeSearchValue();
+        removeError(); // we have a successful search, remove any errors
+        console.log(data);
         var genre = data.Genre;
         var moviePlot = data.Plot;
         var posterLink = data.Poster;
@@ -40,38 +41,65 @@ $(document).ready(function () {
         console.log(data);
 
         var movieHTML = $(`
-          <h3> ${title}</h3>
-          <img src='${posterLink}'>
-           <span><h5>Synopsis:</h5><p> ${moviePlot}</p></span>
-          <p>Genre: ${genre}</p>
-          <p>Runtime: ${runTime}</p>
-        `);
+            <h3> ${title}</h3>
+            <img src='${posterLink}'>
+             <span><h5>Synopsis:</h5><p> ${moviePlot}</p></span>
+            <p>Genre: ${genre}</p>
+            <p>Runtime: ${runTime}</p>
+          `);
         $("#movies").empty();
         $("#movies").append(movieHTML);
 
         setLocalStorageMovies(title);
         displayMovieTitles();
+      })
+      .catch(function (err) {
+        setError(err);
       });
   }
-
-  $(document).on("click", ".movieTitle", function () {
-    $(this).text();
-    getMovie($(this).text());
-  });
 
   function getCocktail(cocktail) {
     console.log(cocktail);
     // fetch
   }
 
-  $("#searchBtn").on("click", movieSearch);
+  // Events
+  // On form submit
+  $("form#searchMovie").on("submit", function (e) {
+    e.preventDefault();
+    getMovie(e.target[0].value);
+  });
+
+  // Movie title clicked
+  $(document).on("click", ".movieTitle", function () {
+    $(this).text();
+    getMovie($(this).text());
+  });
+
+  // On focus input - clear out the current value
+  $("#userQuery").on("focus", function () {
+    removeSearchValue();
+  });
+
+  function removeSearchValue() {
+    $("#userQuery").val("");
+  }
+
+  function removeError() {
+    $("#error").text("");
+  }
+
+  function setError(err) {
+    $("#error").text(err);
+  }
 
   function displayMovieTitles() {
     let searchList = $("#searchList");
     searchList.html("");
     let movies = getLocalStorageMovies();
+    movies.sort();
     movies.forEach((title) => {
-      var liEl = $("<li class='movieTitle'>");
+      var liEl = $("<li class='movieTitle btn'>");
       liEl.text(title);
       searchList.append(liEl);
     });
@@ -79,7 +107,7 @@ $(document).ready(function () {
 
   function setLocalStorageMovies(movieTitle) {
     let movieStorage = getLocalStorageMovies();
-    if (!movieStorage || !movieStorage.find((m) => m === movieTitle)) {
+    if (movieTitle && (!movieStorage || !movieStorage.find((m) => m === movieTitle))) {
       // title not found add to local storage
       movieStorage.push(movieTitle);
       localStorage.setItem("movies", JSON.stringify(movieStorage));
