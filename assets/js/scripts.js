@@ -59,9 +59,29 @@ $(document).ready(function () {
   }
 
   function getCocktail(cocktail) {
-    console.log(cocktail);
+    // console.log(cocktail);
     // fetch
+    fetch(cocktail)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        var drink = data.drinks[0].strDrink;
+        var drinkPic = data.drinks[0].strDrinkThumb;
+
+        var drinkHTML = $(`<h4>${drink} <span id="moreDrinkInfo">(click the pic for recipe and more info.)</span></h4>
+        <img src = '${drinkPic}' class="responsive">`);
+
+        $("#drinks").empty();
+        $("#drinks").append(drinkHTML);
+
+      });
   }
+  var addedLiquor = "Gin";
+  var cocktail = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
+  
+  // getCocktail(cocktail);
 
   // Events
   // On form submit
@@ -125,21 +145,6 @@ $(document).ready(function () {
     let localStorageMovies = JSON.parse(localStorage.getItem("movies"));
     return localStorageMovies || [];
   }
-
-  // function getDrink(requestDrinkUrl) {
-  //   //var requestDrinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin"
-  //   // fetch
-  //   console.log(requestDrinkUrl);
-  //   fetch(requestDrinkUrl)
-  //     .then(function (response) {
-  //       return response.json();
-  //     })
-  //     .then(function (data) {
-  //       console.log(data);
-  //     });
-  // }
-  // var addedLiquor = "GiN";
-  // var requestDrinkUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
 
 
 });
