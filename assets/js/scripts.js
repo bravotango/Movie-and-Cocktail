@@ -32,23 +32,7 @@ $(document).ready(function () {
         }
         removeSearchValue();
         removeError(); // we have a successful search, remove any errors
-        console.log(data);
-        var genre = data.Genre;
-        var moviePlot = data.Plot;
-        var posterLink = data.Poster;
-        var runTime = data.Runtime;
-        var title = data.Title;
-        console.log(data);
-
-        var movieHTML = $(`
-            <h3> ${title}</h3>
-            <img src='${posterLink}'>
-             <span><h5>Synopsis:</h5><p> ${moviePlot}</p></span>
-            <p>Genre: ${genre}</p>
-            <p>Runtime: ${runTime}</p>
-          `);
-        $("#movies").empty();
-        $("#movies").append(movieHTML);
+        displayMovie(data);
 
         setLocalStorageMovies(title);
         displayMovieTitles();
@@ -75,13 +59,32 @@ $(document).ready(function () {
 
         $("#drinks").empty();
         $("#drinks").append(drinkHTML);
-
       });
   }
   var addedLiquor = "Gin";
   var cocktail = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
-  
+
   // getCocktail(cocktail);
+
+  function displayMovie(data) {
+    console.log(data);
+    var genre = data.Genre;
+    var moviePlot = data.Plot;
+    var posterLink = data.Poster;
+    var runTime = data.Runtime;
+    var title = data.Title;
+    console.log(data);
+
+    var movieHTML = $(`
+        <h3> ${title}</h3>
+        <img src='${posterLink}'>
+         <span><h5>Synopsis:</h5><p> ${moviePlot}</p></span>
+        <p>Genre: ${genre}</p>
+        <p>Runtime: ${runTime}</p>
+      `);
+    $("#movies").empty();
+    $("#movies").append(movieHTML);
+  }
 
   // Events
   // On form submit
@@ -111,10 +114,8 @@ $(document).ready(function () {
   }
   var addedLiquor = "Gin";
   var cocktail = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
-  
+
   // getCocktail(cocktail);
-
-
 
   function setError(err) {
     $("#error").text(err);
@@ -145,6 +146,4 @@ $(document).ready(function () {
     let localStorageMovies = JSON.parse(localStorage.getItem("movies"));
     return localStorageMovies || [];
   }
-
-
 });
