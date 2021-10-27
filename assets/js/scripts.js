@@ -55,7 +55,7 @@ $(document).ready(function () {
         var drink = data.drinks[0].strDrink;
         var drinkPic = data.drinks[0].strDrinkThumb;
 
-        var drinkHTML = $(`<h4>${drink} <span id="moreDrinkInfo">(click the pic for recipe and more info.)</span></h4>
+        var drinkHTML = $(`<h4>${drink} <span id="moreDrinkInfo"></span></h4>
         <img src = '${drinkPic}' class="responsive">`);
 
         $("#drinks").empty();
