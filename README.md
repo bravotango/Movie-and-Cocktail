@@ -49,6 +49,12 @@ _if encountered conflicts with merge - after successful resolution, do another g
 
 ### Go to github repo to create pull request to merge your changes into our main branch
 
+## Wire frames
+
+### Drinks page
+
+![wire frame drinks](./assets/images/wireframe-drinks.png)
+
 ## Github Deployed Application
 
 [https://jonkhunkle.github.io/Project-1/](https://jonkhunkle.github.io/Project-1/)

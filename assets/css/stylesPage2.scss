@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Mukta&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css");
+
+body {
+  header {
+    text-align: center;
+  }
+  
+  img {
+    display: block;
+    max-width: 100%
+  }
+
+  .wrapper {
+    overflow: hidden;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 2fr 5fr;
+    grid-gap: 10px;
+
+    @media screen and (min-width: 1200px) {
+      grid-template-columns: 1fr 5fr;
+      grid-template-rows: auto;
+    }
+  }
+  
+  .gallery {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    display: flex;
+
+    @media screen and (min-width: 1200px) {
+      display: block;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+    }
+  }
+  
+  .gallery_img {
+    scroll-snap-align: start;
+    margin-bottom: 10px;
+    min-height: 100vh;
+    object-fit: cover;
+  }
+  
+  .lil-nav {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: flex;
+    grid-row-start: 2;
+
+    @media screen and (min-width: 1200px) {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      display: block;
+      grid-row-start: auto;
+    }
+  }
+  
+  .lil-nav a {
+    height: 200px;
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .lil-nav_img {
+    object-fit: cover;
+    filter: saturate(0);
+    transition: 0.3s ease all;
+  }
+  
+  .lil-nav_img:hover {
+    transform: scale(1.05);
+    filter: saturate(1);
+  }
+
+}
