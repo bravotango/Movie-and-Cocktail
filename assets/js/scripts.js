@@ -30,22 +30,23 @@ $(document).ready(function () {
           console.log("We have an error");
           throw new Error(`${data.Error}`);
         }
-        removeSearchValue();
+        //removeSearchValue();
         removeError(); // we have a successful search, remove any errors
         displayMovie(data);
 
-        setLocalStorageMovies(title);
+        setLocalStorageMovies(movie);
         displayMovieTitles();
       })
       .catch(function (err) {
+        console.log("setting error");
         setError(err);
       });
   }
 
   function getCocktail(cocktail) {
-    // console.log(cocktail);
+    var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktail}`;
     // fetch
-    fetch(cocktail)
+    fetch(cocktailURL)
       .then(function (response) {
         return response.json();
       })
@@ -61,8 +62,6 @@ $(document).ready(function () {
         $("#drinks").append(drinkHTML);
       });
   }
-  var addedLiquor = "Gin";
-  var cocktail = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
 
   // getCocktail(cocktail);
 
@@ -91,13 +90,14 @@ $(document).ready(function () {
   $("form#searchMovie").on("submit", function (e) {
     e.preventDefault();
     getMovie(e.target[0].value);
+    getCocktail("gin");
   });
 
   // Movie title clicked
   $(document).on("click", ".movieTitle", function () {
     $(this).text();
     getMovie($(this).text());
-    getCocktail(cocktail);
+    getCocktail("whiskey");
   });
 
   // On focus input - clear out the current value
@@ -110,10 +110,9 @@ $(document).ready(function () {
   }
 
   function removeError() {
+    console.log("removing error");
     $("#error").text("");
   }
-  var addedLiquor = "Gin";
-  var cocktail = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
 
   // getCocktail(cocktail);
 
