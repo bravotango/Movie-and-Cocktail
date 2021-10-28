@@ -13,8 +13,10 @@
 
 //create <aside> HTML with movie title, poster, rating and suggested drink with image
 
-$(document).ready(function () {
+// $(document).ready(function () {
+  $('.carousel').carousel();
   displayMovieTitles();
+
 
   function getMovie(movie) {
     const omdbApiKey = "dc038d01";
@@ -48,20 +50,15 @@ $(document).ready(function () {
   function getCocktail(cocktail) {
     var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktail}`;
 
+
     // fetch
     fetch(cocktailURL)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
-        var drink = data.drinks[0].strDrink;
-        var drinkPic = data.drinks[0].strDrinkThumb;
-
-        var drinkHTML = $(`<h4>${drink} <span id="moreDrinkInfo"></span></h4>
-        <img src = '${drinkPic}' class="responsive">`);
-
-        $("#drinks").empty();
-        $("#drinks").append(drinkHTML);
+        displayDrinkCarousel(data)
+        console.log(data)
       });
   }
 
@@ -105,6 +102,39 @@ $(document).ready(function () {
         getCocktail("Brandy")
       } else {
         getCocktail("Tequila")
+      }
+    }
+
+    //populates carousel with drink images w/ titles
+    function displayDrinkCarousel (data) {
+      $('#drinks').empty();
+      let drinkArray = ['one', 'two', 'three', 'four', 'five'];
+      let drinkText = $("<h3>")
+      drinkText.text("Cocktail Suggestions")
+      drinkText.css({"text-align": "center"})
+      $('#drinks').prepend(drinkText)
+      let newDiv = $("<div>")
+      newDiv.addClass("carousel")
+      $("#drinks").append(newDiv)
+
+      for(let i = 0; i < 5; i++) {
+        var drink = data.drinks[i].strDrink;
+        var drinkPic = data.drinks[i].strDrinkThumb;
+        let newIndexNumber = [i +1]
+        let image = $("<img>")
+        image.attr("src", drinkPic)
+        image.css({'width': '225px', 'height': '225px'})
+        newDiv.append(image)
+
+        let href = $("<a>")
+        href.addClass("carousel-item")
+        href.attr("href", "#" + drinkArray[i] + "!")
+        image.wrap(href);
+        
+          //lines 135-137 I was trying to append to html lines 33-39 to see if carousel would work-it did!
+      // $("#item" + newIndexNumber).text(drink)
+      // $("#item" + newIndexNumber).css({"font-size": "24px", "text-align": "center", "color":"black"})
+      //   $("#item" + newIndexNumber).append(image)
       }
     }
 
@@ -166,4 +196,6 @@ $(document).ready(function () {
     let localStorageMovies = JSON.parse(localStorage.getItem("movies"));
     return localStorageMovies || [];
   }
-});
+
+// });
+
