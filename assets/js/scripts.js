@@ -13,10 +13,8 @@
 
 //create <aside> HTML with movie title, poster, rating and suggested drink with image
 
-// $(document).ready(function () {
-  $('.carousel').carousel();
+$(document).ready(function () {
   displayMovieTitles();
-
 
   function getMovie(movie) {
     const omdbApiKey = "dc038d01";
@@ -38,18 +36,15 @@
         setLocalStorageMovies(movie);
         displayMovieTitles();
         getCocktailLiquor(data);
-
       })
       .catch(function (err) {
         console.log("setting error");
         setError(err);
-
       });
   }
   //API call to CocktailDB using alcohol type search
   function getCocktail(cocktail) {
     var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktail}`;
-
 
     // fetch
     fetch(cocktailURL)
@@ -57,11 +52,10 @@
         return response.json();
       })
       .then(function (data) {
-        displayDrinkCarousel(data)
-        console.log(data)
+        displayDrinkCarousel(data);
+        console.log(data);
       });
   }
-
 
   function displayMovie(data) {
     console.log(data);
@@ -83,60 +77,54 @@
     $("#movies").append(movieHTML);
   }
   //conditional to pick liquor type for cocktail search
-    function getCocktailLiquor(data) {
-      let genre = (data.Genre).split(",");
-      genre = (genre[0])
-      if(genre.includes("Animation") || genre.includes("Comedy")) {
-        getCocktail("Gin")
-      } else if (genre.includes("Action") || genre.includes("Crime")) {
-        getCocktail("Vodka")
-      } else if (genre.includes("Adventure")) {
-        getCocktail("Tequila")
-      } else if (genre.includes("Fantasy") || genre.includes("Sci-Fi")) {
-        getCocktail("Rum")
-      } else if (genre.includes("Drama") || genre.includes("Sport")) {
-        getCocktail("Bourbon")
-      } else if (genre.includes("Western")) {
-        getCocktail("Whiskey")
-      } else if (genre.includes("Romance")) {
-        getCocktail("Brandy")
-      } else {
-        getCocktail("Tequila")
-      }
+  function getCocktailLiquor(data) {
+    let genre = data.Genre.split(",");
+    genre = genre[0];
+    if (genre.includes("Animation") || genre.includes("Comedy")) {
+      getCocktail("Gin");
+    } else if (genre.includes("Action") || genre.includes("Crime")) {
+      getCocktail("Vodka");
+    } else if (genre.includes("Adventure")) {
+      getCocktail("Tequila");
+    } else if (genre.includes("Fantasy") || genre.includes("Sci-Fi")) {
+      getCocktail("Rum");
+    } else if (genre.includes("Drama") || genre.includes("Sport")) {
+      getCocktail("Bourbon");
+    } else if (genre.includes("Western")) {
+      getCocktail("Whiskey");
+    } else if (genre.includes("Romance")) {
+      getCocktail("Brandy");
+    } else {
+      getCocktail("Tequila");
     }
+  }
 
-    //populates carousel with drink images w/ titles
-    function displayDrinkCarousel (data) {
-      $('#drinks').empty();
-      let drinkArray = ['one', 'two', 'three', 'four', 'five'];
-      let drinkText = $("<h3>")
-      drinkText.text("Cocktail Suggestions")
-      drinkText.css({"text-align": "center"})
-      $('#drinks').prepend(drinkText)
-      let newDiv = $("<div>")
-      newDiv.addClass("carousel")
-      $("#drinks").append(newDiv)
+  //populates carousel with drink images w/ titles
+  function displayDrinkCarousel(data) {
+    $("#drinks").empty();
+    let drinkArray = ["one", "two", "three", "four", "five"];
+    let drinkText = $(`<h3>Cocktail Suggestions</h3>`);
+    drinkText.css({ "text-align": "center" });
+    $("#drinks").prepend(drinkText);
+    let newDiv = $(`<div class='carousel'></div>`);
+    $("#drinks").append(newDiv);
 
-      for(let i = 0; i < 5; i++) {
-        var drink = data.drinks[i].strDrink;
-        var drinkPic = data.drinks[i].strDrinkThumb;
-        let newIndexNumber = [i +1]
-        let image = $("<img>")
-        image.attr("src", drinkPic)
-        image.css({'width': '225px', 'height': '225px'})
-        newDiv.append(image)
+    for (let i = 0; i < 5; i++) {
+      var drink = data.drinks[i].strDrink;
+      var drinkPic = data.drinks[i].strDrinkThumb;
+      let newIndexNumber = [i + 1];
+      let href = $(
+        `<a class='carousel-item' href=#'${drinkArray[i]}'!><img src='${drinkPic}' 'width':'225px', 'height':'225px'></a>`
+      );
+      newDiv.append(href);
+      
 
-        let href = $("<a>")
-        href.addClass("carousel-item")
-        href.attr("href", "#" + drinkArray[i] + "!")
-        image.wrap(href);
-        
-          //lines 135-137 I was trying to append to html lines 33-39 to see if carousel would work-it did!
+      //lines 135-137 I was trying to append to html lines 33-39 to see if carousel would work-it did!
       // $("#item" + newIndexNumber).text(drink)
       // $("#item" + newIndexNumber).css({"font-size": "24px", "text-align": "center", "color":"black"})
       //   $("#item" + newIndexNumber).append(image)
-      }
     }
+  }
 
   // Events
   // On form submit
@@ -185,7 +173,10 @@
 
   function setLocalStorageMovies(movieTitle) {
     let movieStorage = getLocalStorageMovies();
-    if (movieTitle && (!movieStorage || !movieStorage.find((m) => m === movieTitle))) {
+    if (
+      movieTitle &&
+      (!movieStorage || !movieStorage.find((m) => m === movieTitle))
+    ) {
       // title not found add to local storage
       movieStorage.push(movieTitle);
       localStorage.setItem("movies", JSON.stringify(movieStorage));
@@ -196,6 +187,6 @@
     let localStorageMovies = JSON.parse(localStorage.getItem("movies"));
     return localStorageMovies || [];
   }
+$(".carousel").carousel();
 
-// });
-
+});
