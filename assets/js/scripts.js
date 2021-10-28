@@ -89,9 +89,9 @@ $(document).ready(function () {
     } else if (genre.includes("Fantasy") || genre.includes("Sci-Fi")) {
       getCocktail("Rum");
     } else if (genre.includes("Drama") || genre.includes("Sport")) {
-      getCocktail("Bourbon");
+      getCocktail("Bourbon" )
     } else if (genre.includes("Western")) {
-      getCocktail("Whiskey");
+      getCocktail("Bourbon");
     } else if (genre.includes("Romance")) {
       getCocktail("Brandy");
     } else {
@@ -101,28 +101,35 @@ $(document).ready(function () {
 
   //populates carousel with drink images w/ titles
   function displayDrinkCarousel(data) {
-    $("#drinks").empty();
+    // $("#drinks").empty();
+    $('#item1').empty()
+    $('#item2').empty()
+    $('#item3').empty()
+    $('#item4').empty()
+    $('#item5').empty()
     let drinkArray = ["one", "two", "three", "four", "five"];
-    let drinkText = $(`<h3>Cocktail Suggestions</h3>`);
-    drinkText.css({ "text-align": "center" });
-    $("#drinks").prepend(drinkText);
-    let newDiv = $(`<div class='carousel'></div>`);
-    $("#drinks").append(newDiv);
+    // let drinkText = $(`<h3>Cocktail Suggestions</h3>`);
+    // drinkText.css({ "text-align": "center" });
+    // $("#drinks").prepend(drinkText); 
+    // let newDiv = $(`<div class='carousel'></div>`);
+    // $("#drinks").append(newDiv);
 
     for (let i = 0; i < 5; i++) {
       var drink = data.drinks[i].strDrink;
       var drinkPic = data.drinks[i].strDrinkThumb;
       let newIndexNumber = [i + 1];
-      let href = $(
-        `<a class='carousel-item' href=#'${drinkArray[i]}'!><img src='${drinkPic}' 'width':'225px', 'height':'225px'></a>`
-      );
-      newDiv.append(href);
+      let image = $(`<img src ='${drinkPic}'>`)
+      // let href = $(
+      //   `<a class='carousel-item' href=#'${drinkArray[i]}'!><img src='${drinkPic}' 'width':'225px', 'height':'225px'></a>`
+      // );
+      // newDiv.append(href);
       
 
-      //lines 135-137 I was trying to append to html lines 33-39 to see if carousel would work-it did!
-      // $("#item" + newIndexNumber).text(drink)
-      // $("#item" + newIndexNumber).css({"font-size": "24px", "text-align": "center", "color":"black"})
-      //   $("#item" + newIndexNumber).append(image)
+      // lines 135-137 I was trying to append to html lines 33-39 to see if carousel would work-it did!
+
+      $("#item" + newIndexNumber).text(drink)
+      $("#item" + newIndexNumber).css({"font-size": "24px", "text-align": "center", "color":"black"})
+      $("#item" + newIndexNumber).append(image)
     }
   }
 
