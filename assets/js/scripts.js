@@ -133,7 +133,7 @@ $(document).ready(function () {
       $("#item" + newIndexNumber).css({"font-size": "24px", "text-align": "center", "color":"black"})
       $("#item" + newIndexNumber).append(image)
     }
-    let drinkRecipeBtn = $(`<BUTTON id='RecipeBtn'>`);
+    let drinkRecipeBtn = $(`<BUTTON id='recipeBtn'>`);
     drinkRecipeBtn.text("Click Here for Recipe!")
     drinkRecipeBtn.css({ width: '100px', 'padding-top': '10px', 'padding-bottom': '10px' })
     $('.carousel').append(drinkRecipeBtn)
