@@ -33,25 +33,27 @@ $(document).ready(function () {
         //removeSearchValue();
         removeError(); // we have a successful search, remove any errors
         displayMovie(data);
-
         setLocalStorageMovies(movie);
         displayMovieTitles();
+        getCocktailLiquor(data);
+
       })
       .catch(function (err) {
         console.log("setting error");
         setError(err);
+
       });
   }
-
+  //API call to CocktailDB using alcohol type search
   function getCocktail(cocktail) {
     var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktail}`;
+
     // fetch
     fetch(cocktailURL)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
         var drink = data.drinks[0].strDrink;
         var drinkPic = data.drinks[0].strDrinkThumb;
 
@@ -63,7 +65,6 @@ $(document).ready(function () {
       });
   }
 
-  // getCocktail(cocktail);
 
   function displayMovie(data) {
     console.log(data);
@@ -84,20 +85,40 @@ $(document).ready(function () {
     $("#movies").empty();
     $("#movies").append(movieHTML);
   }
+  //conditional to pick liquor type for cocktail search
+    function getCocktailLiquor(data) {
+      let genre = (data.Genre).split(",");
+      genre = (genre[0])
+      if(genre.includes("Animation") || genre.includes("Comedy")) {
+        getCocktail("Gin")
+      } else if (genre.includes("Action") || genre.includes("Crime")) {
+        getCocktail("Vodka")
+      } else if (genre.includes("Adventure")) {
+        getCocktail("Tequila")
+      } else if (genre.includes("Fantasy") || genre.includes("Sci-Fi")) {
+        getCocktail("Rum")
+      } else if (genre.includes("Drama") || genre.includes("Sport")) {
+        getCocktail("Bourbon")
+      } else if (genre.includes("Western")) {
+        getCocktail("Whiskey")
+      } else if (genre.includes("Romance")) {
+        getCocktail("Brandy")
+      } else {
+        getCocktail("Tequila")
+      }
+    }
 
   // Events
   // On form submit
   $("form#searchMovie").on("submit", function (e) {
     e.preventDefault();
     getMovie(e.target[0].value);
-    getCocktail("gin");
   });
 
   // Movie title clicked
   $(document).on("click", ".movieTitle", function () {
     $(this).text();
     getMovie($(this).text());
-    getCocktail("whiskey");
   });
 
   // On focus input - clear out the current value

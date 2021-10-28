@@ -1,5 +1,14 @@
+// $(document).ready(function(){
+
+//   });
+
 $(document).ready(function () {
 
+    $('.carousel').carousel();
+
+
+
+let drinkArray = ['one', 'two', 'three', 'four', 'five'];
     function getCocktail(cocktail) {
         // console.log(cocktail);
         // fetch
@@ -9,23 +18,23 @@ $(document).ready(function () {
           })
           .then(function (data) {
             console.log(data);
-            for(let i = 0; i < data.drinks.length; i++) {
+            for(let i = 0; i <= 4; i++) {
                 let drink = data.drinks[i].strDrink;
                 let drinkPic = data.drinks[i].strDrinkThumb;
+                
 
                 let link = $("<a>");
-                link.attr("href", "#image-" + [i]);
+                link.attr("href", "#" + drinkArray[i] + "!");
+                link.attr("class", "carousel-item")
                 console.log(link)
                 // $(".lil-nav").append(link);
 
                 let smallImage = $("<img>")
-                smallImage.attr("src", drinkPic)
-                smallImage.attr("class", "lil-nav-img")
-                smallImage.width(200)
-                smallImage.height(200)
-                console.log(smallImage)
-                console.log("#image-" + [i])
-                $(".lil-nav").append(smallImage);
+                $(`#carousel${i}`).attr("src", drinkPic)
+                // smallImage.attr("class", "carousel-item")
+                // console.log(smallImage)
+                // console.log("#image-" + [i])
+                $(".carousel").append(smallImage);
                 smallImage.wrap(link);
 
                 let largeImage = $("<img>");
@@ -35,8 +44,8 @@ $(document).ready(function () {
                 console.log(largeImage)
                 $(".gallery").append(largeImage);
                 
-                let drinkText = $("<h3>")
-                $(".gallery").append(drink);
+                let drinkText = $("<p>")
+                $(".caro").append(drink);
                 $(".lil-nav").append(drink);
                 $(".gallery").css("")
 
