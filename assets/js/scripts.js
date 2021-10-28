@@ -101,6 +101,7 @@ $(document).ready(function () {
 
   //populates carousel with drink images w/ titles
   function displayDrinkCarousel(data) {
+      //LEAVE LINE 105 FOR NOW!!!-JW
     // $("#drinks").empty();
     $('#item1').empty()
     $('#item2').empty()
@@ -108,6 +109,7 @@ $(document).ready(function () {
     $('#item4').empty()
     $('#item5').empty()
     let drinkArray = ["one", "two", "three", "four", "five"];
+      //LEAVE THIS BLOCK FOR NOW!!!-JW
     // let drinkText = $(`<h3>Cocktail Suggestions</h3>`);
     // drinkText.css({ "text-align": "center" });
     // $("#drinks").prepend(drinkText); 
@@ -115,22 +117,26 @@ $(document).ready(function () {
     // $("#drinks").append(newDiv);
 
     for (let i = 0; i < 5; i++) {
-      var drink = data.drinks[i].strDrink;
-      var drinkPic = data.drinks[i].strDrinkThumb;
+      let drink = data.drinks[i].strDrink;
+      let drinkPic = data.drinks[i].strDrinkThumb;
       let newIndexNumber = [i + 1];
       let image = $(`<img src ='${drinkPic}'>`)
+        //LEAVE THIS BLOCK FOR NOW!!!-JW
       // let href = $(
       //   `<a class='carousel-item' href=#'${drinkArray[i]}'!><img src='${drinkPic}' 'width':'225px', 'height':'225px'></a>`
       // );
       // newDiv.append(href);
       
-
-      // lines 135-137 I was trying to append to html lines 33-39 to see if carousel would work-it did!
+       // lines 132-134 I was trying to append to html lines 33-39 to see if carousel would work-it did!
 
       $("#item" + newIndexNumber).text(drink)
       $("#item" + newIndexNumber).css({"font-size": "24px", "text-align": "center", "color":"black"})
       $("#item" + newIndexNumber).append(image)
     }
+    let drinkRecipeBtn = $(`<BUTTON id='RecipeBtn'>`);
+    drinkRecipeBtn.text("Click Here for Recipe!")
+    drinkRecipeBtn.css({ width: '100px', 'padding-top': '10px', 'padding-bottom': '10px' })
+    $('.carousel').append(drinkRecipeBtn)
   }
 
   // Events
