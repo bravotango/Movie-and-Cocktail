@@ -12,12 +12,6 @@ body {
     color: red;
   }
   #drinkHeading {
-    // text-align: center;
     padding-top:10px;
-    margin-left:26%;
-
-    @media screen and (max-width: 640px) {
-      margin-left: 0%;
-    }
   }
 }
