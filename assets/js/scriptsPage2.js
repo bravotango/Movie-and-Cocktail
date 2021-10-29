@@ -45,8 +45,10 @@ $(document).ready(function () {
       <li>${ingredient}</li>`;
       $("#ingredients").append(liEl);
     }
-    var pEl = eval(`ingredients.strInstructions`)
+    var instructions = eval(`ingredients.strInstructions`)
+    var pEl = `<p>${instructions}</p>`
     $('#recipe').append(pEl)
+    
 
   }
   //display large drink pic on screen
