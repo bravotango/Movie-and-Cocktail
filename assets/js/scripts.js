@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
   displayMovieTitles();
 
@@ -99,14 +98,14 @@ $(document).ready(function () {
     $("#item12").empty();
     $("#drinkHeading").empty();
     let drinkHeading = $(`<h4>Recommended for You:</h4>`);
-    $('#drinkHeading').append(drinkHeading);
+    $("#drinkHeading").append(drinkHeading);
     for (let i = 0; i < 12; i++) {
       let drink = data.drinks[i].strDrink;
       let drinkPic = data.drinks[i].strDrinkThumb;
       let drinkId = data.drinks[i].idDrink;
       let newIndexNumber = [i + 1];
       let image = $(`<img src ='${drinkPic}'>`);
-      $("#item" + newIndexNumber).attr("href", "page2.html?drinkID=" + drinkId);
+      $("#item" + newIndexNumber).attr("href", "drinks.html?drinkID=" + drinkId);
       $("#item" + newIndexNumber).text(drink);
       $("#item" + newIndexNumber).css({
         "font-size": "24px",

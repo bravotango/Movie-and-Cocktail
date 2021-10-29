@@ -13,8 +13,6 @@ $(document).ready(function () {
       .then(function (data) {
         displayIngredients(data.drinks[0]);
         displayDrinkPic(data.drinks[0]);
-
-        //console.log(data);
       });
   }
 
@@ -46,8 +44,7 @@ $(document).ready(function () {
 
       $("#drinkInstructions").text(ingredients.strInstructions);
       console.log(ingredient);
-    }    
-
+    }
   }
   //display large drink pic on screen
   function displayDrinkPic(drinkPic) {
