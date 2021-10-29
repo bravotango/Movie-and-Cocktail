@@ -112,7 +112,6 @@ $(document).ready(function () {
     $("#item11").empty();
     $("#item12").empty();
     $("#drinkHeading").empty();
-    let drinkArray = ["one", "two", "three", "four", "five"];
     let drinkHeading = $(`<h4>Recommended for You:</h4>`);
     $('#drinkHeading').append(drinkHeading);
     for (let i = 0; i < 12; i++) {
