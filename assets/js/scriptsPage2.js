@@ -34,7 +34,7 @@ $(document).ready(function () {
     for (let i = 1; i <= 15; i++) {
       var ingredient = eval(`ingredients.strIngredient${i}`);
       if (!ingredient) {
-        return;
+        break;
       }
 
       var measurement = eval(`ingredients.strMeasure${i}`);
@@ -46,7 +46,8 @@ $(document).ready(function () {
 
       $("#drinkInstructions").text(ingredients.strInstructions);
       console.log(ingredient);
-    }
+    }    
+
   }
   //display large drink pic on screen
   function displayDrinkPic(drinkPic) {
