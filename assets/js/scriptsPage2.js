@@ -3,7 +3,7 @@
 //   });
 
 $(document).ready(function () {
-  getCocktail("Bourbon");
+  getCocktail();
 
   function getCocktail() {
     const drinkId = grabParameterFromQueryString("drinkID");
@@ -15,6 +15,7 @@ $(document).ready(function () {
         return response.json();
       })
       .then(function (data) {
+        displayIngredients(data.drinks[0]);
         console.log(data);
       });
   }
@@ -26,14 +27,10 @@ $(document).ready(function () {
     }
     const startOfValue = urlParameters.slice(urlParameters.indexOf(parameter) + parameter.length + 1);
     const endOfValue = startOfValue.indexOf("&") !== -1 ? startOfValue.indexOf("&") : startOfValue.length;
-    const value = startOfValue.slice(0, endOfValue);
-    console.log(value);
-    return value;
+    return (value = startOfValue.slice(0, endOfValue));
   }
 
-  const drinkId = grabParameterFromQueryString("drinkId");
-  const foo = grabParameterFromQueryString("foo");
-  const blah = grabParameterFromQueryString("blah");
-
-  console.log(drinkId, foo, blah);
+  function displayIngredients(ingredients) {
+    console.log(ingredients.strIngredient1);
+  }
 });
