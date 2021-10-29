@@ -5,10 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cinema and Cocktail</title>
-    <link
-      rel="stylesheet"
-      href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css"
-    />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
     <link rel="stylesheet" href="./assets/css/stylesPage2.css" />
   </head>
   <body>
@@ -17,15 +14,15 @@
         <h1>Cocktails, Cocktails, Cocktails!!!</h1>
       </header>
       <div class="row">
-        <div class="col m7" id="recipe">
-          <h4>Recipe</h4>
-          <ul id="ingredients"></ul>
-          <br>
-          <br>
-          <br>
+        <h2 class="col s12" id="drinkName"></h2>
+        <div class="col s12 m7" id="recipe">
+          <h5>Ingredients</h5>
+          <ul class="collection" id="ingredients"></ul>
+          <h5>Instructions</h5>
+          <p id="drinkInstructions"></p>
         </div>
         <div class="col m5">
-          <div class="col m7" id="drinkPic"></div>
+          <div id="drinkPic"></div>
         </div>
       </div>
     </div>

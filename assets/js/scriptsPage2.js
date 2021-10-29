@@ -23,39 +23,35 @@ $(document).ready(function () {
     if (urlParameters.indexOf(parameter) === -1) {
       return; //not found
     }
-    const startOfValue = urlParameters.slice(
-      urlParameters.indexOf(parameter) + parameter.length + 1
-    );
-    const endOfValue =
-      startOfValue.indexOf("&") !== -1
-        ? startOfValue.indexOf("&")
-        : startOfValue.length;
+    const startOfValue = urlParameters.slice(urlParameters.indexOf(parameter) + parameter.length + 1);
+    const endOfValue = startOfValue.indexOf("&") !== -1 ? startOfValue.indexOf("&") : startOfValue.length;
     return (value = startOfValue.slice(0, endOfValue));
   }
 
   function displayIngredients(ingredients) {
+    console.log(ingredients);
+    $("#drinkName").text(ingredients.strDrink);
     for (let i = 1; i <= 15; i++) {
       var ingredient = eval(`ingredients.strIngredient${i}`);
       if (!ingredient) {
         break;
       }
-      // do your jQuery html magic
-      // p
-      var liEl = `
-      <li>${ingredient}</li>`;
+
+      var measurement = eval(`ingredients.strMeasure${i}`);
+
+      var liEl = measurement
+        ? `<li class='collection-item'>${ingredient} - ${measurement}</li>`
+        : `<li class='collection-item'>${ingredient}</li>`;
       $("#ingredients").append(liEl);
-    }
-    var instructions = eval(`ingredients.strInstructions`)
-    var pEl = `<p>${instructions}</p>`
-    $('#recipe').append(pEl)
-    
+
+      $("#drinkInstructions").text(ingredients.strInstructions);
+      console.log(ingredient);
+    }    
 
   }
   //display large drink pic on screen
-  function displayDrinkPic (drinkPic) {
-    var drinkPic = $(`<img src = ${drinkPic.strDrinkThumb}>`)
-  $("#drinkPic").append(drinkPic);
+  function displayDrinkPic(drinkPic) {
+    var drinkPic = $(`<img class='responsive-img' src=${drinkPic.strDrinkThumb}>`);
+    $("#drinkPic").append(drinkPic);
   }
-
-
 });
