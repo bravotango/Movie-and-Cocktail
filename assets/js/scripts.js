@@ -119,6 +119,7 @@ $(document).ready(function () {
     for (let i = 0; i < 5; i++) {
       let drink = data.drinks[i].strDrink;
       let drinkPic = data.drinks[i].strDrinkThumb;
+      let drinkId = data.drinks[i].idDrink;
       let newIndexNumber = [i + 1];
       let image = $(`<img src ='${drinkPic}'>`);
       //LEAVE THIS BLOCK FOR NOW!!!-JW
@@ -126,6 +127,8 @@ $(document).ready(function () {
       //   `<a class='carousel-item' href=#'${drinkArray[i]}'!><img src='${drinkPic}' 'width':'225px', 'height':'225px'></a>`
       // );
       // newDiv.append(href);
+
+      $("#item" + newIndexNumber).attr("href", "page2.html?drinkID=" + drinkId);
 
       // lines 132-134 I was trying to append to html lines 33-39 to see if carousel would work-it did!
 
@@ -137,15 +140,6 @@ $(document).ready(function () {
       });
       $("#item" + newIndexNumber).append(image);
     }
-    let drinkRecipeBtn = $(`<BUTTON id='recipeBtn'>`);
-    $(".carouselBtns").empty();
-    drinkRecipeBtn.text("Click Here for Recipe!");
-    drinkRecipeBtn.css({
-      width: "100px",
-      "padding-top": "10px",
-      "padding-bottom": "10px",
-    });
-    $(".carouselBtns").append(drinkRecipeBtn);
   }
   // Events
   // On form submit
