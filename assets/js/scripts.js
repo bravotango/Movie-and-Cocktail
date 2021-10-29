@@ -1,17 +1,3 @@
-//~~~drinks are pulled from cocktail api slap and turned into cocktail object~~~
-
-//input movie name
-
-//click the button
-//sammy
-
-//slaps movie api and saves input to local storage
-//David
-//pulls genre, poster, rating
-
-// with the genre we pull from cocktail object with suggested drinks
-
-//create <aside> HTML with movie title, poster, rating and suggested drink with image
 
 $(document).ready(function () {
   displayMovieTitles();
