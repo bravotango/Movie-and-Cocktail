@@ -12,6 +12,7 @@ $(document).ready(function () {
       })
       .then(function (data) {
         displayIngredients(data.drinks[0]);
+        displayDrinkPic(data.drinks[0]);
 
         //console.log(data);
       });
@@ -40,11 +41,17 @@ $(document).ready(function () {
       }
       // do your jQuery html magic
       // p
-
       var liEl = `
       <li>${ingredient}</li>`;
       $("#ingredients").append(liEl);
       console.log(ingredient);
     }
   }
+  //display large drink pic on screen
+  function displayDrinkPic (drinkPic) {
+    var drinkPic = $(`<img src = ${drinkPic.strDrinkThumb}>`)
+  $("#drinkPic").append(drinkPic);
+  }
+
+
 });
