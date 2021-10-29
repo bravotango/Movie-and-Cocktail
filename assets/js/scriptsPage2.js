@@ -5,11 +5,12 @@
 $(document).ready(function () {
   getCocktail("Bourbon");
 
-  function getCocktail(cocktail) {
-    var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktail}`;
-
+  function getCocktail() {
+    const drinkId = grabParameterFromQueryString("drinkID");
+    var cocktailDetails = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`;
+    console.log(cocktailDetails);
     // fetch
-    fetch(cocktailURL)
+    fetch(cocktailDetails)
       .then(function (response) {
         return response.json();
       })

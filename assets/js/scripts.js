@@ -65,16 +65,16 @@ $(document).ready(function () {
     var runTime = data.Runtime;
     var title = data.Title;
     console.log(data);
-
-    var movieHTML = $(`
-        <h3> ${title}</h3>
-        <img src='${posterLink}' class='responsive'>
-         <span><h5>Synopsis:</h5><p> ${moviePlot}</p></span>
+    var movieTitle = `<h3> ${title}</h3>`;
+    var moviePoster = `<img src='${posterLink}' class='responsive'>`;
+    var movieInfo = $(`
+        <span><h5>Synopsis:</h5><p> ${moviePlot}</p></span>
         <p>Genre: ${genre}</p>
         <p>Runtime: ${runTime}</p>
       `);
-    $("#movies").empty();
-    $("#movies").append(movieHTML);
+    $("#movieTitle").html(movieTitle);
+    $("#moviePoster").html(moviePoster);
+    $("#movieInfo").html(movieInfo);
   }
   //conditional to pick liquor type for cocktail search
   function getCocktailLiquor(data) {
@@ -188,10 +188,7 @@ $(document).ready(function () {
 
   function setLocalStorageMovies(movieTitle) {
     let movieStorage = getLocalStorageMovies();
-    if (
-      movieTitle &&
-      (!movieStorage || !movieStorage.find((m) => m === movieTitle))
-    ) {
+    if (movieTitle && (!movieStorage || !movieStorage.find((m) => m === movieTitle))) {
       // title not found add to local storage
       movieStorage.push(movieTitle);
       localStorage.setItem("movies", JSON.stringify(movieStorage));
