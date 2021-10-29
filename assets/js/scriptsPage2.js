@@ -3,6 +3,8 @@
 //   });
 
 $(document).ready(function () {
+  getCocktail("Bourbon");
+
   function getCocktail(cocktail) {
     var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktail}`;
 
@@ -16,8 +18,21 @@ $(document).ready(function () {
       });
   }
 
-  // var addedLiquor = "Gin";
-  // var cocktail = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
+  function grabParameterFromQueryString(parameter) {
+    const urlParameters = window.location.search;
+    if (urlParameters.indexOf(parameter) === -1) {
+      return; //not found
+    }
+    const startOfValue = urlParameters.slice(urlParameters.indexOf(parameter) + parameter.length + 1);
+    const endOfValue = startOfValue.indexOf("&") !== -1 ? startOfValue.indexOf("&") : startOfValue.length;
+    const value = startOfValue.slice(0, endOfValue);
+    console.log(value);
+    return value;
+  }
 
-  getCocktail("Bourbon");
+  const drinkId = grabParameterFromQueryString("drinkId");
+  const foo = grabParameterFromQueryString("foo");
+  const blah = grabParameterFromQueryString("blah");
+
+  console.log(drinkId, foo, blah);
 });

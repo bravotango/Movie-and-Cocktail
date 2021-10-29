@@ -5,14 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cinema and Cocktail</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
     <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
   <body>
@@ -24,12 +18,7 @@
         <div class="col m3">
           <form id="searchMovie">
             <label for="userQuery">What movie to Search?</label>
-            <input
-              type="text"
-              id="userQuery"
-              placeholder="Movie title here"
-              required
-            />
+            <input type="text" id="userQuery" placeholder="Movie title here" required />
             <button type="submit" class="btn" id="searchBtn">Search</button>
           </form>
           <div id="error"></div>
@@ -43,13 +32,12 @@
           <div class="col m7" id="drinks">
             <br />
             <!-- Lines 34-40 was trying carousel just appending images to see if it worked-it did! -->
-            <div class="carouselBtns"></div>
             <div class="carousel">
-              <a id="item1" class="carousel-item" href="#one!"></a>
-              <a id="item2" class="carousel-item" href="#two!"></a>
-              <a id="item3" class="carousel-item" href="#three!"></a>
-              <a id="item4" class="carousel-item" href="#four!"></a>
-              <a id="item5" class="carousel-item" href="#five!"></a>
+              <a id="item1" class="carousel-item" href="page2.html?drinkId=11111"></a>
+              <a id="item2" class="carousel-item" href="page2.html?drinkId=222222"></a>
+              <a id="item3" class="carousel-item" href="page2.html?drinkId=33333"></a>
+              <a id="item4" class="carousel-item" href="page2.html?drinkId=44444"></a>
+              <a id="item5" class="carousel-item" href="page2.html?drinkId=555555"></a>
             </div>
           </div>
         </div>
