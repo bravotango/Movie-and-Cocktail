@@ -89,7 +89,7 @@ $(document).ready(function () {
     } else if (genre.includes("Fantasy") || genre.includes("Sci-Fi")) {
       getCocktail("Rum");
     } else if (genre.includes("Drama") || genre.includes("Sport")) {
-      getCocktail("Bourbon" )
+      getCocktail("Bourbon");
     } else if (genre.includes("Western")) {
       getCocktail("Bourbon");
     } else if (genre.includes("Romance")) {
@@ -101,18 +101,18 @@ $(document).ready(function () {
 
   //populates carousel with drink images w/ titles
   function displayDrinkCarousel(data) {
-      //LEAVE LINE 105 FOR NOW!!!-JW
+    //LEAVE LINE 105 FOR NOW!!!-JW
     // $("#drinks").empty();
-    $('#item1').empty()
-    $('#item2').empty()
-    $('#item3').empty()
-    $('#item4').empty()
-    $('#item5').empty()
+    $("#item1").empty();
+    $("#item2").empty();
+    $("#item3").empty();
+    $("#item4").empty();
+    $("#item5").empty();
     let drinkArray = ["one", "two", "three", "four", "five"];
-      //LEAVE THIS BLOCK FOR NOW!!!-JW
+    //LEAVE THIS BLOCK FOR NOW!!!-JW
     // let drinkText = $(`<h3>Cocktail Suggestions</h3>`);
     // drinkText.css({ "text-align": "center" });
-    // $("#drinks").prepend(drinkText); 
+    // $("#drinks").prepend(drinkText);
     // let newDiv = $(`<div class='carousel'></div>`);
     // $("#drinks").append(newDiv);
 
@@ -120,25 +120,33 @@ $(document).ready(function () {
       let drink = data.drinks[i].strDrink;
       let drinkPic = data.drinks[i].strDrinkThumb;
       let newIndexNumber = [i + 1];
-      let image = $(`<img src ='${drinkPic}'>`)
-        //LEAVE THIS BLOCK FOR NOW!!!-JW
+      let image = $(`<img src ='${drinkPic}'>`);
+      //LEAVE THIS BLOCK FOR NOW!!!-JW
       // let href = $(
       //   `<a class='carousel-item' href=#'${drinkArray[i]}'!><img src='${drinkPic}' 'width':'225px', 'height':'225px'></a>`
       // );
       // newDiv.append(href);
-      
-       // lines 132-134 I was trying to append to html lines 33-39 to see if carousel would work-it did!
 
-      $("#item" + newIndexNumber).text(drink)
-      $("#item" + newIndexNumber).css({"font-size": "24px", "text-align": "center", "color":"black"})
-      $("#item" + newIndexNumber).append(image)
+      // lines 132-134 I was trying to append to html lines 33-39 to see if carousel would work-it did!
+
+      $("#item" + newIndexNumber).text(drink);
+      $("#item" + newIndexNumber).css({
+        "font-size": "24px",
+        "text-align": "center",
+        color: "black",
+      });
+      $("#item" + newIndexNumber).append(image);
     }
     let drinkRecipeBtn = $(`<BUTTON id='recipeBtn'>`);
-    drinkRecipeBtn.text("Click Here for Recipe!")
-    drinkRecipeBtn.css({ width: '100px', 'padding-top': '10px', 'padding-bottom': '10px' })
-    $('.carousel').append(drinkRecipeBtn)
+    $(".carouselBtns").empty();
+    drinkRecipeBtn.text("Click Here for Recipe!");
+    drinkRecipeBtn.css({
+      width: "100px",
+      "padding-top": "10px",
+      "padding-bottom": "10px",
+    });
+    $(".carouselBtns").append(drinkRecipeBtn);
   }
-
   // Events
   // On form submit
   $("form#searchMovie").on("submit", function (e) {
@@ -200,6 +208,15 @@ $(document).ready(function () {
     let localStorageMovies = JSON.parse(localStorage.getItem("movies"));
     return localStorageMovies || [];
   }
-$(".carousel").carousel();
-
+  $(".carousel").carousel();
+  $(document).on("click", "#recipeBtn", function () {
+    movePage();
+  });
 });
+
+// need to add drink ID from selection to local storage in order to put up recipe
+
+//button on click to move to page 2
+function movePage() {
+  document.location.replace("./Page2.html");
+}
