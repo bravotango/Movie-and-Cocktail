@@ -37,15 +37,17 @@ $(document).ready(function () {
     for (let i = 1; i <= 15; i++) {
       var ingredient = eval(`ingredients.strIngredient${i}`);
       if (!ingredient) {
-        return;
+        break;
       }
       // do your jQuery html magic
       // p
       var liEl = `
       <li>${ingredient}</li>`;
       $("#ingredients").append(liEl);
-      console.log(ingredient);
     }
+    var pEl = eval(`ingredients.strInstructions`)
+    $('#recipe').append(pEl)
+
   }
   //display large drink pic on screen
   function displayDrinkPic (drinkPic) {
