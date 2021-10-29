@@ -104,8 +104,17 @@ $(document).ready(function () {
     $("#item3").empty();
     $("#item4").empty();
     $("#item5").empty();
-    let drinkArray = ["one", "two", "three", "four", "five"];
-    for (let i = 0; i < 5; i++) {
+    $("#item6").empty();
+    $("#item7").empty();
+    $("#item8").empty();
+    $("#item9").empty();
+    $("#item10").empty();
+    $("#item11").empty();
+    $("#item12").empty();
+    $("#drinkHeading").empty();
+    let drinkHeading = $(`<h4>Recommended for You:</h4>`);
+    $('#drinkHeading').append(drinkHeading);
+    for (let i = 0; i < 12; i++) {
       let drink = data.drinks[i].strDrink;
       let drinkPic = data.drinks[i].strDrinkThumb;
       let drinkId = data.drinks[i].idDrink;
