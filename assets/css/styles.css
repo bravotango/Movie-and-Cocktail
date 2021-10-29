@@ -15,4 +15,15 @@ body input {
 body #error {
   color: red;
 }
+
+body #drinkHeading {
+  padding-top: 10px;
+  margin-left: 26%;
+}
+
+@media screen and (max-width: 640px) {
+  body #drinkHeading {
+    margin-left: 0%;
+  }
+}
 /*# sourceMappingURL=styles.css.map */
