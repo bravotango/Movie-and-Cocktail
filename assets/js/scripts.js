@@ -104,6 +104,13 @@ $(document).ready(function () {
     $("#item3").empty();
     $("#item4").empty();
     $("#item5").empty();
+    $("#item6").empty();
+    $("#item7").empty();
+    $("#item8").empty();
+    $("#item9").empty();
+    $("#item10").empty();
+    $("#item11").empty();
+    $("#item12").empty();
     $("#drinkHeading").empty();
     let drinkArray = ["one", "two", "three", "four", "five"];
     let drinkHeading = $(`<h4>Recommended for You:</h4>`);
