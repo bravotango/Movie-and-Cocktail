@@ -13,5 +13,10 @@ body {
   }
   #drinkHeading {
     padding-top:10px;
+    margin-left:26%;
+
+    @media screen and (max-width: 640px) {
+      margin-left: 0%;
+    }
   }
 }
