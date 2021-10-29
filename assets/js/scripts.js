@@ -56,7 +56,7 @@ $(document).ready(function () {
         console.log(data);
       });
   }
-
+  //display Movie data from API call
   function displayMovie(data) {
     console.log(data);
     var genre = data.Genre;
@@ -66,7 +66,7 @@ $(document).ready(function () {
     var title = data.Title;
     console.log(data);
     var movieTitle = `<h3> ${title}</h3>`;
-    var moviePoster = `<img src='${posterLink}' class='responsive'>`;
+    var moviePoster = `<img src='${posterLink}' class='responsive-img'>`;
     var movieInfo = $(`
         <span><h5>Synopsis:</h5><p> ${moviePlot}</p></span>
         <p>Genre: ${genre}</p>
@@ -88,9 +88,7 @@ $(document).ready(function () {
       getCocktail("Tequila");
     } else if (genre.includes("Fantasy") || genre.includes("Sci-Fi")) {
       getCocktail("Rum");
-    } else if (genre.includes("Drama") || genre.includes("Sport")) {
-      getCocktail("Bourbon");
-    } else if (genre.includes("Western")) {
+    } else if (genre.includes("Drama") || genre.includes("Sport") || genre.includes("Western")) {
       getCocktail("Bourbon");
     } else if (genre.includes("Romance")) {
       getCocktail("Brandy");
@@ -101,37 +99,19 @@ $(document).ready(function () {
 
   //populates carousel with drink images w/ titles
   function displayDrinkCarousel(data) {
-    //LEAVE LINE 105 FOR NOW!!!-JW
-    // $("#drinks").empty();
     $("#item1").empty();
     $("#item2").empty();
     $("#item3").empty();
     $("#item4").empty();
     $("#item5").empty();
     let drinkArray = ["one", "two", "three", "four", "five"];
-    //LEAVE THIS BLOCK FOR NOW!!!-JW
-    // let drinkText = $(`<h3>Cocktail Suggestions</h3>`);
-    // drinkText.css({ "text-align": "center" });
-    // $("#drinks").prepend(drinkText);
-    // let newDiv = $(`<div class='carousel'></div>`);
-    // $("#drinks").append(newDiv);
-
     for (let i = 0; i < 5; i++) {
       let drink = data.drinks[i].strDrink;
       let drinkPic = data.drinks[i].strDrinkThumb;
       let drinkId = data.drinks[i].idDrink;
       let newIndexNumber = [i + 1];
       let image = $(`<img src ='${drinkPic}'>`);
-      //LEAVE THIS BLOCK FOR NOW!!!-JW
-      // let href = $(
-      //   `<a class='carousel-item' href=#'${drinkArray[i]}'!><img src='${drinkPic}' 'width':'225px', 'height':'225px'></a>`
-      // );
-      // newDiv.append(href);
-
       $("#item" + newIndexNumber).attr("href", "page2.html?drinkID=" + drinkId);
-
-      // lines 132-134 I was trying to append to html lines 33-39 to see if carousel would work-it did!
-
       $("#item" + newIndexNumber).text(drink);
       $("#item" + newIndexNumber).css({
         "font-size": "24px",
