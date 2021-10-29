@@ -3,10 +3,8 @@
 //   });
 
 $(document).ready(function () {
-
-function getCocktail(cocktail) {
+  function getCocktail(cocktail) {
     var cocktailURL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${cocktail}`;
-
 
     // fetch
     fetch(cocktailURL)
@@ -14,16 +12,12 @@ function getCocktail(cocktail) {
         return response.json();
       })
       .then(function (data) {
-          console.log(data)
+        console.log(data);
       });
-  } 
+  }
 
-      var addedLiquor = "Gin";
-      var cocktail = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
+  // var addedLiquor = "Gin";
+  // var cocktail = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${addedLiquor}`;
 
-
-      getCocktail("Bourbon")
-
-
-
+  getCocktail("Bourbon");
 });
