@@ -6,8 +6,9 @@ $(document).ready(function () {
   getCocktail();
 
   function getCocktail() {
-    const drinkId = grabParameterFromQueryString("drinkId");
+    const drinkId = grabParameterFromQueryString("drinkID");
     var cocktailDetails = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`;
+    console.log(cocktailDetails);
     // fetch
     fetch(cocktailDetails)
       .then(function (response) {
