@@ -147,7 +147,6 @@ $(document).ready(function () {
     });
     $(".carouselBtns").append(drinkRecipeBtn);
   }
-
   // Events
   // On form submit
   $("form#searchMovie").on("submit", function (e) {
@@ -210,13 +209,14 @@ $(document).ready(function () {
     return localStorageMovies || [];
   }
   $(".carousel").carousel();
+  $(document).on("click", "#recipeBtn", function () {
+    movePage();
+  });
 });
 
 // need to add drink ID from selection to local storage in order to put up recipe
 
 //button on click to move to page 2
-
-// function movePage() {
-//   console.log("you clicked", $(this));
-//   document.location.replace("./Page2.html");
-// }
+function movePage() {
+  document.location.replace("./Page2.html");
+}
