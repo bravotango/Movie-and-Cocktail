@@ -78,7 +78,7 @@ $(document).ready(function () {
   //populates carousel with drink images w/ titles
   function displayDrinkCarousel(data) {
     let drinkHeading = $(`<h5>Recommended for your viewing pleasure:</h5>`);
-    $(".carousel").html(drinkHeading);
+    $("#drinkHeading").html(drinkHeading);
     for (let i = 1; i <= 12; i++) {
       let carouselAnchor = $("<a>");
       carouselAnchor.attr("id", `item${i}`);
@@ -88,10 +88,11 @@ $(document).ready(function () {
       let image = $(`<img src ='${drinkPic}'>`);
 
       carouselAnchor.empty();
-      carouselAnchor.attr("href", "drinks.html?drinkID=" + drinkId);
-      carouselAnchor.text(drink);
-      carouselAnchor.addClass("carouselHeading carousel-item");
+      carouselAnchor.append(drink);
+      carouselAnchor.addClass("carousel-item carouselHeading");
       carouselAnchor.append(image);
+      carouselAnchor.attr("href", `drinks.html?drinkID=${drinkId}`);
+
       $(".carousel").append(carouselAnchor);
     }
     $(".carousel").carousel();
