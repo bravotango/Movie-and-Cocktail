@@ -4,8 +4,6 @@ $(document).ready(function () {
   function getCocktail() {
     const drinkId = grabParameterFromQueryString("drinkID");
     var cocktailDetails = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`;
-    //console.log(cocktailDetails);
-    // fetch
     fetch(cocktailDetails)
       .then(function (response) {
         return response.json();
@@ -27,7 +25,6 @@ $(document).ready(function () {
   }
 
   function displayIngredients(ingredients) {
-    console.log(ingredients);
     $("#drinkName").text(ingredients.strDrink);
     for (let i = 1; i <= 15; i++) {
       var ingredient = eval(`ingredients.strIngredient${i}`);
@@ -43,7 +40,6 @@ $(document).ready(function () {
       $("#ingredients").append(liEl);
 
       $("#drinkInstructions").text(ingredients.strInstructions);
-      console.log(ingredient);
     }
   }
   //display large drink pic on screen
