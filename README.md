@@ -1,3 +1,35 @@
+# Movies and Cocktails
+
+This application allows users to search movies for a synopsis including a description, genre, and runtime. Based on the movie genre recommended cocktails are presented in a carousel. Clicking a drink from the carousel will take the user to ingredients and instructions on how to mix the chosen cocktail.
+
+This application leverages Materialize CSS, SCSS, jQuery, jQueryUI
+
+## Screenshots
+
+### Desktop index.html
+
+A simple desktop interface is presented with Materialize CSS
+
+![desktop initial screenshot](./assets/images/desktop-index.png)
+
+### Mobile index.html
+
+A simple mobile interface is presented with Materialize CSS.
+
+![mobile initial screenshot](./assets/images/mobile-index.png)
+
+### Desktop drinks.html
+
+This user interface uses screen real estate to display the selected cocktail ingredients and instructions on mixing
+
+![desktop search](./assets/images/desktop-drinks.png)
+
+### Mobile drinks.html
+
+This user interface is responsive and displays nicely for mobile users.
+
+![desktop search](./assets/images/mobile-drinks.png)
+
 ## Creating a branch
 
 ### Step 1
