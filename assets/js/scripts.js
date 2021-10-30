@@ -33,6 +33,7 @@ $(document).ready(function () {
         return response.json();
       })
       .then(function (data) {
+        console.log(data);
         displayDrinkCarousel(data);
       });
   }
@@ -77,6 +78,7 @@ $(document).ready(function () {
 
   //populates carousel with drink images w/ titles
   function displayDrinkCarousel(data) {
+    $(".carousel").empty();
     let drinkHeading = $(`<h5>Recommended for your viewing pleasure:</h5>`);
     $("#drinkHeading").html(drinkHeading);
     for (let i = 1; i <= 12; i++) {
