@@ -16,13 +16,14 @@ body #error {
   color: red;
 }
 
-body #drinkHeading {
-  padding-top: 10px;
-  margin-left: 26%;
+body .carouselHeading {
+  font-size: 24px;
+  text-align: center;
+  color: black;
 }
 
 @media screen and (max-width: 640px) {
-  body #drinkHeading {
+  body {
     margin-left: 0%;
   }
 }

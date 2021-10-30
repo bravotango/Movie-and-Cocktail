@@ -4,7 +4,6 @@ $(document).ready(function () {
   function getMovie(movie) {
     const omdbApiKey = "dc038d01";
     let requestMovieURL = `https://www.omdbapi.com/?apikey=${omdbApiKey}&t=${movie}`;
-    console.log(movie);
     // fetch
     fetch(requestMovieURL)
       .then(function (response) {
@@ -12,10 +11,8 @@ $(document).ready(function () {
       })
       .then(function (data) {
         if (data.Response === "False") {
-          console.log("We have an error");
           throw new Error(`${data.Error}`);
         }
-        //removeSearchValue();
         removeError(); // we have a successful search, remove any errors
         displayMovie(data);
         setLocalStorageMovies(movie);
@@ -23,7 +20,6 @@ $(document).ready(function () {
         getCocktailLiquor(data);
       })
       .catch(function (err) {
-        console.log("setting error");
         setError(err);
       });
   }
@@ -38,18 +34,15 @@ $(document).ready(function () {
       })
       .then(function (data) {
         displayDrinkCarousel(data);
-        console.log(data);
       });
   }
   //display Movie data from API call
   function displayMovie(data) {
-    console.log(data);
     var genre = data.Genre;
     var moviePlot = data.Plot;
     var posterLink = data.Poster;
     var runTime = data.Runtime;
     var title = data.Title;
-    console.log(data);
     var movieTitle = `<h3> ${title}</h3>`;
     var moviePoster = `<img src='${posterLink}' class='responsive-img'>`;
     var movieInfo = $(`
@@ -84,36 +77,24 @@ $(document).ready(function () {
 
   //populates carousel with drink images w/ titles
   function displayDrinkCarousel(data) {
-    $("#item1").empty();
-    $("#item2").empty();
-    $("#item3").empty();
-    $("#item4").empty();
-    $("#item5").empty();
-    $("#item6").empty();
-    $("#item7").empty();
-    $("#item8").empty();
-    $("#item9").empty();
-    $("#item10").empty();
-    $("#item11").empty();
-    $("#item12").empty();
-    $("#drinkHeading").empty();
-    let drinkHeading = $(`<h4>Recommended for You:</h4>`);
-    $("#drinkHeading").append(drinkHeading);
-    for (let i = 0; i < 12; i++) {
+    let drinkHeading = $(`<h5>Recommended for your viewing pleasure:</h5>`);
+    $(".carousel").html(drinkHeading);
+    for (let i = 1; i <= 12; i++) {
+      let carouselAnchor = $("<a>");
+      carouselAnchor.attr("id", `item${i}`);
       let drink = data.drinks[i].strDrink;
       let drinkPic = data.drinks[i].strDrinkThumb;
       let drinkId = data.drinks[i].idDrink;
-      let newIndexNumber = [i + 1];
       let image = $(`<img src ='${drinkPic}'>`);
-      $("#item" + newIndexNumber).attr("href", "drinks.html?drinkID=" + drinkId);
-      $("#item" + newIndexNumber).text(drink);
-      $("#item" + newIndexNumber).css({
-        "font-size": "24px",
-        "text-align": "center",
-        color: "black",
-      });
-      $("#item" + newIndexNumber).append(image);
+
+      carouselAnchor.empty();
+      carouselAnchor.attr("href", "drinks.html?drinkID=" + drinkId);
+      carouselAnchor.text(drink);
+      carouselAnchor.addClass("carouselHeading carousel-item");
+      carouselAnchor.append(image);
+      $(".carousel").append(carouselAnchor);
     }
+    $(".carousel").carousel();
   }
   // Events
   // On form submit
@@ -138,11 +119,8 @@ $(document).ready(function () {
   }
 
   function removeError() {
-    console.log("removing error");
     $("#error").text("");
   }
-
-  // getCocktail(cocktail);
 
   function setError(err) {
     $("#error").text(err);
@@ -163,7 +141,7 @@ $(document).ready(function () {
   function setLocalStorageMovies(movieTitle) {
     let movieStorage = getLocalStorageMovies();
     if (movieTitle && (!movieStorage || !movieStorage.find((m) => m === movieTitle))) {
-      // title not found add to local storage
+      // title found add to local storage
       movieStorage.push(movieTitle);
       localStorage.setItem("movies", JSON.stringify(movieStorage));
     }
@@ -173,15 +151,4 @@ $(document).ready(function () {
     let localStorageMovies = JSON.parse(localStorage.getItem("movies"));
     return localStorageMovies || [];
   }
-  $(".carousel").carousel();
-  $(document).on("click", "#recipeBtn", function () {
-    movePage();
-  });
 });
-
-// need to add drink ID from selection to local storage in order to put up recipe
-
-//button on click to move to page 2
-function movePage() {
-  document.location.replace("./Page2.html");
-}
