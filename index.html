@@ -5,8 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cinema and Cocktail</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css"
+    />
     <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
   <body>
@@ -18,11 +24,16 @@
         <div class="col m3">
           <form id="searchMovie">
             <label for="userQuery">What movie to Search?</label>
-            <input type="text" id="userQuery" placeholder="Movie title here" required />
+            <input
+              type="text"
+              id="userQuery"
+              placeholder="Movie title here"
+              required
+            />
             <button type="submit" class="btn" id="searchBtn">Search</button>
           </form>
           <div id="error"></div>
-          <div id="searchHistory" class="row">
+          <div id="searchHistory" class="m3">
             <h5>Search History</h5>
             <ul id="searchList"></ul>
           </div>
